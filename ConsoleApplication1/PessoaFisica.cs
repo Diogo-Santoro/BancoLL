@@ -4,9 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApplication1
+namespace BancoLL
 {
-    class PessoaFisica
+    class PessoaFisica : Cliente
     {
+        public PessoaFisica(string codigo, string nome):base(codigo, nome)
+        { }
+    
+    public override decimal DescontarTaxa(decimal valor)
+    {
+        return valor - 1;
     }
-}
+}}

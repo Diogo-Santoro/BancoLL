@@ -48,6 +48,31 @@ void ConsultarCliente()
    }
 
 }
+void ExibirMenu(Cliente cliente)
+{
+    Console.WriteLine($"Olá {Cliente.Nome}");
+    Console.WriteLine("Digite a opção desejada:");
+    Console.WriteLine("1 - Extrato");
+    Console.WriteLine("2 - Saque");
+    Console.WriteLine("3 - Deposito");
+
+    string menu = Console.ReadLine;
+
+    switch (menu)
+    {
+        case "1":
+            ExibirExtrato(cliente);
+        case "2":
+            RealizarSaque(cliente);
+        case "3":
+            ReazlizarDeposito(cliente);
+            break;
+        default:
+            Console.WriteLine("Digite a opção correta.");
+            ExibirMenu(cliente);
+            break;
+    }
+}
 void ExibirExtrato()
 {
     Console.WriteLine("----- EXTRATO -----");
@@ -58,8 +83,8 @@ void ExibirExtrato()
     Console.WriteLine("Deseja exibir o menu novamente? Digite S ou N");
     string exibirMenu = Console.ReadLine();
     if (exibirMenu == "S")
-    {
-        exibirMenu(cliente);
+    { 
+        ExibirMenu(cliente);
     }
     else
     {
@@ -85,4 +110,7 @@ void RealizarSaque(Cliente cliente)
 }
 
 void RealizarDeposito(Cliente cliente)
+{
+
+}
 #endregion

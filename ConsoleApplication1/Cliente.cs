@@ -11,7 +11,7 @@ namespace BancoLL
         public string Codigo { get; private set; }
         public string Nome{ get; private set; }
         public string Saldo{ get; private set; }
-        public List<Movimentacso> Movimentacoes { get; set; }
+        public List<Movimentacao> Movimentacoes { get; set; }
 
         public Cliente()
         {
@@ -35,5 +35,25 @@ namespace BancoLL
                 Console.WriteLine("Valor insuficiente");
         }
     }
-
+    public void RealizarDeposito(decimal valor)
+    {
+        if (valor >= 10)
+        {
+            decimal valorMenosTaxa = DescontarTaxa(valor);
+            Saldo += valorMenosTaxa;
+            AdicionarMovimentacao("DEPÓSITO", valorMenosTaxa);
+            Console.WriteLine($"Depósito realizado com sucesso. Saldo: {Saldo}");
+        }
+        else
+            Console.WriteLine("Valor deve ser maior ou igual a R$10,00");
+    }
+    private void AdicionarMovimentacao(string tipo, decimal valor)
+    {
+        Movimentacoes.Add(new Movimentacao(tipo, DescontarTaxa(valor)));
+    }
+    public virtual decimal DescontarTaxa(decimal valor)
+    {
+        return valor;
+    }
+            
 }
